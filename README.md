@@ -1,13 +1,10 @@
 # doc_appointments_app
 
-A new Flutter project.
+## 🏗️ System Architecture & Design
 
-## Getting Started
+<img width="925" height="1024" alt="f18b07ab-f9c4-457d-b918-898c977a010c" src="https://github.com/user-attachments/assets/385e16bd-7cb5-4cef-8d7d-2e5ee9f660c0" />
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
+  
 - [Learn Flutter](https://docs.flutter.dev/get-started/learn-flutter)
 - [Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
 - [Flutter learning resources](https://docs.flutter.dev/reference/learning-resources)
