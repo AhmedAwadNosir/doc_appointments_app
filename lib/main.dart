@@ -1,6 +1,11 @@
+import 'package:doc_appointments_app/core/routing/app_router.dart';
+import 'package:doc_appointments_app/doc_app.dart';
 import 'package:flutter/material.dart';
 
 void main() {
+<<<<<<< HEAD
+  runApp(DocApp(appRouter: AppRouter()));
+=======
   runApp(const MyApp());
 }
 
@@ -119,4 +124,5 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
     );
   }
+>>>>>>> development
 }
