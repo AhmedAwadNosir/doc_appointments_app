@@ -13,29 +13,31 @@ class OnBoardingScreen extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
         body: Padding(
-          padding: const EdgeInsets.only(top: 30, bottom: 30),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              AppLogoAndName(),
-              SizedBox(height: 50.h),
-              OnboardingDoctorImageAndTitle(),
-              // SizedBox(height: 30.h),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 33),
-                child: Column(
-                  children: [
-                    Text(
-                      "Manage and schedule all of your medical appointments easily with Docdoc to get a new experience.",
-                      textAlign: TextAlign.center,
-                      style: FontStyls.font13GreyNormal(),
-                    ),
-                    SizedBox(height: 30.h),
-                    GetStartedButton(),
-                  ],
+          padding: const EdgeInsets.only(top: 30, bottom: 10),
+          child: SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                AppLogoAndName(),
+                SizedBox(height: 50.h),
+                OnboardingDoctorImageAndTitle(),
+                // SizedBox(height: 30.h),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 33),
+                  child: Column(
+                    children: [
+                      Text(
+                        "Manage and schedule all of your medical appointments easily with Docdoc to get a new experience.",
+                        textAlign: TextAlign.center,
+                        style: FontStyls.font13GreyNormal(),
+                      ),
+                      SizedBox(height: 30.h),
+                      GetStartedButton(),
+                    ],
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),
