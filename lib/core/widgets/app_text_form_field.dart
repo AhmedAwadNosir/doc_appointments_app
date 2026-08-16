@@ -14,6 +14,8 @@ class AppTextFormField extends StatelessWidget {
     this.hintStyle,
     this.suffixIcon,
     this.obscureText,
+    this.textEditingController,
+    required this.validator,
   });
   final Color? backgroundColor;
   final EdgeInsetsGeometry? contentPadding;
@@ -23,9 +25,13 @@ class AppTextFormField extends StatelessWidget {
   final TextStyle? hintStyle;
   final Widget? suffixIcon;
   final bool? obscureText;
+  final TextEditingController? textEditingController;
+  final String? Function(String?)? validator;
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      validator: validator,
+      controller: textEditingController,
       decoration: InputDecoration(
         fillColor: backgroundColor ?? ColorManager.moreLieghtGrey,
         filled: true,
@@ -35,22 +41,10 @@ class AppTextFormField extends StatelessWidget {
             EdgeInsets.symmetric(horizontal: 20.w, vertical: 18.h),
         enabledBorder:
             enabledBorder ??
-            OutlineInputBorder(
-              borderRadius: BorderRadius.circular(16),
-              borderSide: BorderSide(
-                color: ColorManager.lieghterGrey,
-                width: 1.3,
-              ),
-            ),
-        focusedBorder:
-            focusedBorder ??
-            OutlineInputBorder(
-              borderRadius: BorderRadius.circular(16),
-              borderSide: BorderSide(
-                color: ColorManager.primaryColorBlue,
-                width: 1.3,
-              ),
-            ),
+            buildOutlinedInputBorder(color: ColorManager.lieghterGrey),
+        focusedBorder: focusedBorder ?? buildOutlinedInputBorder(),
+        errorBorder: buildOutlinedInputBorder(color: Colors.red),
+        focusedErrorBorder: buildOutlinedInputBorder(color: Colors.red),
         hintText: hintText,
         hintStyle: hintStyle ?? FontStyls.font14LieghtGreyMeduim(),
         suffixIcon: suffixIcon,
@@ -58,4 +52,14 @@ class AppTextFormField extends StatelessWidget {
       obscureText: obscureText ?? false,
     );
   }
+}
+
+OutlineInputBorder buildOutlinedInputBorder({Color? color}) {
+  return OutlineInputBorder(
+    borderSide: BorderSide(
+      color: color ?? ColorManager.primaryColorBlue,
+      width: 1.3,
+    ),
+    borderRadius: BorderRadius.circular(16),
+  );
 }

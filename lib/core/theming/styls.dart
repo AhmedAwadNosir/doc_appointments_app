@@ -52,6 +52,22 @@ abstract class FontStyls {
     );
   }
 
+  static TextStyle font14BlueSemiBold() {
+    return TextStyle(
+      fontSize: 14.sp,
+      fontWeight: FontWeightHelper.semiBold,
+      color: ColorManager.primaryColorBlue,
+    );
+  }
+
+  static TextStyle font15DarkBlueMedium() {
+    return TextStyle(
+      fontSize: 15.sp,
+      fontWeight: FontWeightHelper.medium,
+      color: ColorManager.darkBlue,
+    );
+  }
+
   static TextStyle font16WhightsemiBold() {
     return TextStyle(
       fontSize: 16.sp,

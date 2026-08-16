@@ -1,22 +1,21 @@
+import 'package:doc_appointments_app/core/helpers/extintions/navigation.dart';
 import 'package:doc_appointments_app/core/helpers/spacing.dart';
+import 'package:doc_appointments_app/core/routing/app_router.dart';
+import 'package:doc_appointments_app/core/routing/routes.dart';
 import 'package:doc_appointments_app/core/theming/styls.dart';
 import 'package:doc_appointments_app/core/widgets/app_text_button.dart';
-import 'package:doc_appointments_app/core/widgets/app_text_form_field.dart';
+import 'package:doc_appointments_app/features/login/logic/cubit/login_cubit.dart';
 import 'package:doc_appointments_app/features/login/ui/widgets/already_have_account_rich_text.dart';
+import 'package:doc_appointments_app/features/login/ui/widgets/email_and_password_form.dart';
+import 'package:doc_appointments_app/features/login/ui/widgets/login_bloc_listner.dart';
 import 'package:doc_appointments_app/features/login/ui/widgets/privacy_and_terms_condtiond.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class LoginScreen extends StatefulWidget {
+class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
 
-  @override
-  State<LoginScreen> createState() => _LoginScreenState();
-}
-
-class _LoginScreenState extends State<LoginScreen> {
-  final GlobalKey formKey = GlobalKey<FormState>();
-  bool obscureText = true;
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -35,45 +34,13 @@ class _LoginScreenState extends State<LoginScreen> {
                     style: FontStyls.font14GreyRegular(),
                   ),
                   verticalSpacing(height: 36),
-                  Form(
-                    key: formKey,
-                    child: Column(
-                      children: [
-                        AppTextFormField(hintText: "Email"),
-                        verticalSpacing(height: 16),
-                        AppTextFormField(
-                          hintText: "Password",
-                          obscureText: obscureText,
-                          suffixIcon: GestureDetector(
-                            onTap: () {
-                              setState(() {
-                                obscureText = !obscureText;
-                              });
-                            },
-                            child: Icon(
-                              obscureText
-                                  ? Icons.visibility_off
-                                  : Icons.visibility,
-                            ),
-                          ),
-                        ),
-                        verticalSpacing(height: 24),
-                        Align(
-                          alignment: AlignmentGeometry.centerEnd,
-                          child: Text(
-                            "Forgot Password?",
-                            style: FontStyls.font12MainblueRegular(),
-                          ),
-                        ),
-                        verticalSpacing(height: 40),
-                        AppTextButton(buttonText: "Login"),
-                        verticalSpacing(height: 16),
-                        PrivacyAndTermsCondtiond(),
-                        verticalSpacing(height: 60),
-                        AlreadyHaveAccountRichText(),
-                      ],
-                    ),
-                  ),
+                  EmailAndPasswordForm(),
+
+                  verticalSpacing(height: 16),
+                  PrivacyAndTermsCondtiond(),
+                  verticalSpacing(height: 60),
+                  AlreadyHaveAccountRichText(),
+                  LoginBlocListner(),
                 ],
               ),
             ),
