@@ -1,0 +1,29 @@
+// GENERATED CODE - DO NOT MODIFY BY HAND
+
+part of 'sign_up_request_body_modal.dart';
+
+// **************************************************************************
+// JsonSerializableGenerator
+// **************************************************************************
+
+SignUpRequestBodyModal _$SignUpRequestBodyModalFromJson(
+  Map<String, dynamic> json,
+) => SignUpRequestBodyModal(
+  name: json['name'] as String?,
+  email: json['email'] as String?,
+  phone: json['phone'] as String?,
+  gender: json['gender'] as String?,
+  password: json['password'] as String?,
+  passwordConfirmation: json['password_confirmation'] as String?,
+);
+
+Map<String, dynamic> _$SignUpRequestBodyModalToJson(
+  SignUpRequestBodyModal instance,
+) => <String, dynamic>{
+  'name': instance.name,
+  'email': instance.email,
+  'phone': instance.phone,
+  'gender': instance.gender,
+  'password': instance.password,
+  'password_confirmation': instance.passwordConfirmation,
+};

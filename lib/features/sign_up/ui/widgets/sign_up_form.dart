@@ -1,23 +1,23 @@
 import 'package:doc_appointments_app/core/helpers/app_regax.dart';
 import 'package:doc_appointments_app/core/helpers/spacing.dart';
-import 'package:doc_appointments_app/core/theming/styls.dart';
 import 'package:doc_appointments_app/core/widgets/app_text_button.dart';
 import 'package:doc_appointments_app/core/widgets/app_text_form_field.dart';
-import 'package:doc_appointments_app/features/login/logic/cubit/login_cubit.dart';
 import 'package:doc_appointments_app/features/login/ui/widgets/passwrod_validations.dart';
+import 'package:doc_appointments_app/features/sign_up/logic/cubit/sign_up_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class EmailAndPasswordForm extends StatefulWidget {
-  const EmailAndPasswordForm({super.key});
+class SignUpForm extends StatefulWidget {
+  const SignUpForm({super.key});
 
   @override
-  State<EmailAndPasswordForm> createState() => _EmailAndPasswordFormState();
+  State<SignUpForm> createState() => _SignUpFormState();
 }
 
-class _EmailAndPasswordFormState extends State<EmailAndPasswordForm> {
+class _SignUpFormState extends State<SignUpForm> {
   bool obscureText = true;
   late TextEditingController passwordTextEditingControler;
+  late TextEditingController passwordConformationTextEditingControler;
   bool hasUperCase = false;
   bool hasLowerCase = false;
   bool hasNumber = false;
@@ -28,8 +28,11 @@ class _EmailAndPasswordFormState extends State<EmailAndPasswordForm> {
   @override
   void initState() {
     passwordTextEditingControler = context
-        .read<LoginCubit>()
+        .read<SignUpCubit>()
         .passwordTextEditingControler;
+    passwordConformationTextEditingControler = context
+        .read<SignUpCubit>()
+        .confarmationPasswordTextEditingControler;
     setupPasswordListner();
 
     super.initState();
@@ -59,19 +62,47 @@ class _EmailAndPasswordFormState extends State<EmailAndPasswordForm> {
   Widget build(BuildContext context) {
     return Form(
       autovalidateMode: autovalidateMode,
-      key: context.read<LoginCubit>().formKey,
+      key: context.read<SignUpCubit>().formKey,
       child: Column(
         children: [
           AppTextFormField(
+            hintText: "Name",
+            textEditingController: context
+                .read<SignUpCubit>()
+                .nameTextEditingControler,
+            validator: (value) {
+              if (value == null || value.isEmpty) {
+                return "please eneter valied Name";
+              }
+            },
+          ),
+          verticalSpacing(height: 16),
+          AppTextFormField(
+            hintText: "Phone number",
+            textEditingController: context
+                .read<SignUpCubit>()
+                .phoneTextEditingControler,
+            validator: (value) {
+              if (value == null ||
+                  value.isEmpty ||
+                  !AppRegex.isPhoneNumberValid(
+                    context.read<SignUpCubit>().phoneTextEditingControler.text,
+                  )) {
+                return "please eneter valied Phone Number";
+              }
+            },
+          ),
+          verticalSpacing(height: 16),
+          AppTextFormField(
             hintText: "Email",
             textEditingController: context
-                .read<LoginCubit>()
+                .read<SignUpCubit>()
                 .emailTextEditingControler,
             validator: (value) {
               if (value == null ||
                   value.isEmpty ||
                   !AppRegex.isEmailValid(
-                    context.read<LoginCubit>().emailTextEditingControler.text,
+                    context.read<SignUpCubit>().emailTextEditingControler.text,
                   )) {
                 return "please eneter valied email";
               }
@@ -104,6 +135,30 @@ class _EmailAndPasswordFormState extends State<EmailAndPasswordForm> {
               ),
             ),
           ),
+          verticalSpacing(height: 16),
+          AppTextFormField(
+            hintText: "Password Confarmation",
+            textEditingController: passwordConformationTextEditingControler,
+            validator: (value) {
+              if (value == null ||
+                  value.isEmpty ||
+                  passwordConformationTextEditingControler.text !=
+                      passwordTextEditingControler.text) {
+                return "Passwords do not match";
+              }
+            },
+            obscureText: obscureText,
+            suffixIcon: GestureDetector(
+              onTap: () {
+                setState(() {
+                  obscureText = !obscureText;
+                });
+              },
+              child: Icon(
+                obscureText ? Icons.visibility_off : Icons.visibility,
+              ),
+            ),
+          ),
           verticalSpacing(height: 24),
           PasswrodValidations(
             hasUperCase: hasUperCase,
@@ -112,19 +167,12 @@ class _EmailAndPasswordFormState extends State<EmailAndPasswordForm> {
             hasSpecialCharacter: hasSpecialCharacter,
             hasMinLength: hasMinLength,
           ),
-          verticalSpacing(height: 24),
-          Align(
-            alignment: AlignmentGeometry.centerEnd,
-            child: Text(
-              "Forgot Password?",
-              style: FontStyls.font12MainblueRegular(),
-            ),
-          ),
+
           verticalSpacing(height: 40),
           AppTextButton(
-            buttonText: "Login",
+            buttonText: "Sign Up",
             onpress: () {
-              validateThenDoLogin(context);
+              validateThenSignUp(context);
             },
           ),
         ],
@@ -132,9 +180,9 @@ class _EmailAndPasswordFormState extends State<EmailAndPasswordForm> {
     );
   }
 
-  void validateThenDoLogin(BuildContext context) {
-    if (context.read<LoginCubit>().formKey.currentState!.validate()) {
-      context.read<LoginCubit>().emitLoginStates();
+  void validateThenSignUp(BuildContext context) {
+    if (context.read<SignUpCubit>().formKey.currentState!.validate()) {
+      context.read<SignUpCubit>().emitSignUpStates();
     } else {
       setState(() {
         autovalidateMode = AutovalidateMode.always;
