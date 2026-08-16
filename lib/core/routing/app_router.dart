@@ -1,5 +1,6 @@
 import 'package:doc_appointments_app/core/di/debendency_injection.dart';
 import 'package:doc_appointments_app/core/routing/routes.dart';
+import 'package:doc_appointments_app/features/home/ui/home_veiw.dart';
 import 'package:doc_appointments_app/features/login/logic/cubit/login_cubit.dart';
 import 'package:doc_appointments_app/features/login/ui/login_screen.dart';
 import 'package:doc_appointments_app/features/onboarding/ui/onboarding_screen.dart';
@@ -19,7 +20,7 @@ class AppRouter {
           ),
         );
       case Routes.homeScreen:
-        return MaterialPageRoute(builder: (context) => Placeholder());
+        return MaterialPageRoute(builder: (context) => HomeVeiw());
 
       default:
         return MaterialPageRoute(

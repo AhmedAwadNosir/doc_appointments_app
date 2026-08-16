@@ -7,4 +7,5 @@ abstract class ColorManager {
   static const Color lieghterGrey = Color(0xffEDEDED);
   static const Color moreLieghtGrey = Color(0xffFDFDFF);
   static const Color privacytextGrey = Color(0xff9E9E9E);
+  static const Color darkBlue = Color(0xff242424);
 }
