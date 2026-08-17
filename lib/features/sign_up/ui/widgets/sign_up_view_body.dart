@@ -1,3 +1,4 @@
+import 'package:doc_appointments_app/features/sign_up/ui/widgets/already_have_acount_rich_text.dart';
 import 'package:doc_appointments_app/features/sign_up/ui/widgets/sign_up_bloc_listner.dart';
 import 'package:doc_appointments_app/features/sign_up/ui/widgets/sign_up_form.dart';
 import 'package:flutter/material.dart';
@@ -18,7 +19,11 @@ class SignUpViewBody extends StatelessWidget {
         padding: EdgeInsets.symmetric(horizontal: 30.w, vertical: 30.h),
         child: Column(
           children: [
-            Text("Create Account", style: FontStyls.font24mainBlueBold()),
+            Row(
+              children: [
+                Text("Create Account", style: FontStyls.font24mainBlueBold()),
+              ],
+            ),
             verticalSpacing(height: 8),
             Text(
               "Sign up now and start exploring all that our app has to offer. We're excited to welcome you to our community!.",
@@ -29,7 +34,7 @@ class SignUpViewBody extends StatelessWidget {
             verticalSpacing(height: 16),
             PrivacyAndTermsCondtiond(),
             verticalSpacing(height: 30),
-            DontHaveAccountRichText(),
+            AlreadyHaveAccountRichText(),
             SignUpBlocListner(),
           ],
         ),

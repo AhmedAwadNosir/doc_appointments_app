@@ -17,7 +17,11 @@ class LoginViewBody extends StatelessWidget {
         padding: EdgeInsets.symmetric(horizontal: 30.w, vertical: 30.h),
         child: Column(
           children: [
-            Text("Welcome Back", style: FontStyls.font24mainBlueBold()),
+            Row(
+              children: [
+                Text("Welcome Back", style: FontStyls.font24mainBlueBold()),
+              ],
+            ),
             verticalSpacing(height: 8),
             Text(
               "We're excited to have you back, can't wait to see what you've been up to since you last logged in.",
