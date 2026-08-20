@@ -36,6 +36,14 @@ abstract class FontStyls {
     );
   }
 
+  static TextStyle font12DarkblueRegular() {
+    return TextStyle(
+      fontSize: 12.sp,
+      fontWeight: FontWeightHelper.regular,
+      color: ColorManager.darkBlue,
+    );
+  }
+
   static TextStyle font14GreyRegular() {
     return TextStyle(
       fontSize: 14.sp,

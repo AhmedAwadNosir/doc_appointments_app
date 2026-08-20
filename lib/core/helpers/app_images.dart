@@ -1,6 +1,7 @@
 class AppImages {
   static const String applogo = "assets/svj/doc_app_logo.svg";
   static const String notification = "assets/svj/notification.svg";
+  static const String generalSpecialicy = "assets/svj/general_specialicy.svg";
   static const String doctor = "assets/images/doctor.png";
   static const String homePattern =
       "assets/images/home_doctor_card_pattern.png";

@@ -2,6 +2,7 @@ import 'dart:ui';
 
 abstract class ColorManager {
   static const Color primaryColorBlue = Color(0xff247CFF);
+  static const Color ligthBlue = Color(0xffF4F8FF);
   static const Color secondryColorGrey = Color(0xff757575);
   static const Color subtitleColorGrey = Color(0xff616161);
   static const Color lieghtGrey = Color(0xffC2C2C2);
