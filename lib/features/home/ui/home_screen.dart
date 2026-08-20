@@ -1,6 +1,7 @@
 import 'package:doc_appointments_app/core/helpers/spacing.dart';
 import 'package:doc_appointments_app/core/theming/styls.dart';
 import 'package:doc_appointments_app/features/home/ui/widgets/doctors_blue_container.dart';
+import 'package:doc_appointments_app/features/home/ui/widgets/doctors_list/doctors_list_view.dart';
 import 'package:doc_appointments_app/features/home/ui/widgets/doctors_speciality_see_all.dart';
 import 'package:doc_appointments_app/features/home/ui/widgets/home_top_par.dart';
 import 'package:doc_appointments_app/features/home/ui/widgets/specializations_list/speciality_list_view_item.dart';
@@ -25,8 +26,10 @@ class HomeScreen extends StatelessWidget {
               DoctorsBlueContainer(),
               verticalSpacing(height: 24),
               DoctorsSpecialitySeeAll(),
-              verticalSpacing(height: 16),
+              verticalSpacing(height: 18),
               DoctorsSpecialityListView(),
+              verticalSpacing(height: 8),
+              DoctorsListView(),
             ],
           ),
         ),

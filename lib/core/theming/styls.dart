@@ -44,6 +44,14 @@ abstract class FontStyls {
     );
   }
 
+  static TextStyle font12GreyMeduim() {
+    return TextStyle(
+      fontSize: 12.sp,
+      fontWeight: FontWeightHelper.regular,
+      color: ColorManager.secondryColorGrey,
+    );
+  }
+
   static TextStyle font14GreyRegular() {
     return TextStyle(
       fontSize: 14.sp,
