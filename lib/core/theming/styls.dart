@@ -84,6 +84,14 @@ abstract class FontStyls {
     );
   }
 
+  static TextStyle font18WhieghtMeduim() {
+    return TextStyle(
+      fontSize: 18.sp,
+      fontWeight: FontWeightHelper.medium,
+      color: Colors.white,
+    );
+  }
+
   static TextStyle font24BlacBold() {
     return TextStyle(
       fontSize: 24.sp,
