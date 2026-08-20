@@ -1,0 +1,29 @@
+# setup fastlane 
+# cd android   go to anroid dirctroy and run all comand of fastlane in this drictrory
+# fastlane init (init fastlane generate the main files for fastlane )
+# bundle install    (for creation an image of debendencies to make it work even fast lane update)
+# bundle exec fastlane add_plugin firebase_app_distribution (add plugin of fiebase to fastlane) 
+# firebase login:ci    (conect the firebase to fast lane)
+# notes in code of fastfile keep the distanece like this code  and dont name the lane like name of plugin firebase_app_distripution
+# before every time run fastlane change text of realese note and the version of the app
+# bundle exec fastlane android firebase_distribution   for running fast lane 
+
+
+
+default_platform(:android)
+
+platform :android do
+  desc "distripute andriod app to firebase app distruption"
+  lane :firebase_distribution do 
+    sh "flutter clean"
+    sh "flutter build apk --release --flavor production --target lib/main_production.dart --no-tree-shake-icons"
+   firebase_app_distribution(
+      app: "1:786471461865:android:1c0dd3053ef7bec14e2178", 
+      firebase_cli_token: ENV["FIREBASE_CLI_TOKEN"],
+      android_artifact_type:"APK",
+      android_artifact_path:"../build/app/outputs/flutter-apk/app-production-release.apk",
+      testers:"ahemdawadmohamed2@gmail.com",
+      release_notes:"distripute first version of app with fast lane"
+    )
+    end
+end
