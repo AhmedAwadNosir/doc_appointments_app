@@ -36,6 +36,22 @@ abstract class FontStyls {
     );
   }
 
+  static TextStyle font12DarkblueRegular() {
+    return TextStyle(
+      fontSize: 12.sp,
+      fontWeight: FontWeightHelper.regular,
+      color: ColorManager.darkBlue,
+    );
+  }
+
+  static TextStyle font12GreyMeduim() {
+    return TextStyle(
+      fontSize: 12.sp,
+      fontWeight: FontWeightHelper.regular,
+      color: ColorManager.secondryColorGrey,
+    );
+  }
+
   static TextStyle font14GreyRegular() {
     return TextStyle(
       fontSize: 14.sp,
@@ -72,6 +88,22 @@ abstract class FontStyls {
     return TextStyle(
       fontSize: 16.sp,
       fontWeight: FontWeightHelper.semiBold,
+      color: Colors.white,
+    );
+  }
+
+  static TextStyle font18darkblueBold() {
+    return TextStyle(
+      fontSize: 18.sp,
+      fontWeight: FontWeightHelper.bold,
+      color: ColorManager.darkBlue,
+    );
+  }
+
+  static TextStyle font18WhieghtMeduim() {
+    return TextStyle(
+      fontSize: 18.sp,
+      fontWeight: FontWeightHelper.medium,
       color: Colors.white,
     );
   }
