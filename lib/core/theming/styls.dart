@@ -76,6 +76,14 @@ abstract class FontStyls {
     );
   }
 
+  static TextStyle font18darkblueBold() {
+    return TextStyle(
+      fontSize: 18.sp,
+      fontWeight: FontWeightHelper.bold,
+      color: ColorManager.darkBlue,
+    );
+  }
+
   static TextStyle font24BlacBold() {
     return TextStyle(
       fontSize: 24.sp,
