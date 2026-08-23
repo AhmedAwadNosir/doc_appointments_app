@@ -1,5 +1,6 @@
 import 'package:doc_appointments_app/core/di/debendency_injection.dart';
 import 'package:doc_appointments_app/core/routing/routes.dart';
+import 'package:doc_appointments_app/features/home/logic/cubit/home_cubit.dart';
 import 'package:doc_appointments_app/features/home/ui/home_screen.dart';
 import 'package:doc_appointments_app/features/login/logic/cubit/login_cubit.dart';
 import 'package:doc_appointments_app/features/login/ui/login_screen.dart';
@@ -22,7 +23,13 @@ class AppRouter {
           ),
         );
       case Routes.homeScreen:
-        return MaterialPageRoute(builder: (context) => HomeScreen());
+        return MaterialPageRoute(
+          builder: (context) => BlocProvider(
+            create: (context) =>
+                HomeCubit(homeRepoImpl: getIt())..getDoctorsSpecializations(),
+            child: HomeScreen(),
+          ),
+        );
       case Routes.signUpScreen:
         return MaterialPageRoute(
           builder: (context) => BlocProvider(

@@ -26,7 +26,8 @@ class DioFactory {
   static void addDioHeaders() async {
     dio?.options.headers = {
       'Accept': 'application/json',
-      // 'Authorization':
+      'Authorization':
+          'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL3ZjYXJlLmludGVncmF0aW9uMjUuY29tL2FwaS9hdXRoL2xvZ2luIiwiaWF0IjoxNzg3NDA0MjE4LCJleHAiOjE3ODc0OTA2MTgsIm5iZiI6MTc4NzQwNDIxOCwianRpIjoiMjMwQUdWQk04SE12cXdxaSIsInN1YiI6IjczNzUiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.CPS600vuW9yitQP6-yvO_ckULcwxEHiaZt7vDMEqPzc',
       //     'Bearer ${await SharedPrefHelper.getSecuredString(SharedPrefKeys.userToken)}',
     };
   }

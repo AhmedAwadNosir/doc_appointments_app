@@ -1,8 +1,9 @@
 class AppImages {
   static const String applogo = "assets/svj/doc_app_logo.svg";
   static const String notification = "assets/svj/notification.svg";
-  static const String generalSpecialicy = "assets/svj/general_specialicy.svg";
+  static const String generalSpecialicy = "assets/images/general_specilaty.png";
   static const String doctor = "assets/images/doctor.png";
+  static const String doctor2 = "assets/images/doctor2.png";
   static const String homePattern =
       "assets/images/home_doctor_card_pattern.png";
   static const String onboardingDoctorImagee =
