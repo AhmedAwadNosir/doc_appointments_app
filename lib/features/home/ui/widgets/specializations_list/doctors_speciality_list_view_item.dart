@@ -24,13 +24,11 @@ class DoctorsSpecialityListViewItem extends StatelessWidget {
           CircleAvatar(
             radius: 28,
             backgroundColor: ColorManager.ligthBlue,
-            child: Expanded(
-              child: Image.asset(
-                // doctorsSpecialization.doctorsList?[0]?.photo ?? '',
-                AppImages.generalSpecialicy,
-                height: 40.h,
-                width: 40.w,
-              ),
+            child: Image.asset(
+              // doctorsSpecialization.doctorsList?[0]?.photo ?? '',
+              AppImages.generalSpecialicy,
+              height: 40.h,
+              width: 40.w,
             ),
           ),
           verticalSpacing(height: 8),
