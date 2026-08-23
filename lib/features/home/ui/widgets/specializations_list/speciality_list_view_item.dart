@@ -1,39 +1,25 @@
-import 'package:doc_appointments_app/core/helpers/app_images.dart';
-import 'package:doc_appointments_app/core/helpers/spacing.dart';
-import 'package:doc_appointments_app/core/theming/color_manager.dart';
-import 'package:doc_appointments_app/core/theming/styls.dart';
+import 'package:doc_appointments_app/features/home/data/models/doctors_specialization_reponse_modal.dart';
+import 'package:doc_appointments_app/features/home/ui/widgets/specializations_list/doctors_speciality_list_view_item.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/svg.dart';
 
 class DoctorsSpecialityListView extends StatelessWidget {
-  const DoctorsSpecialityListView({super.key});
-
+  const DoctorsSpecialityListView({
+    super.key,
+    required this.specializationData,
+  });
+  final List<SpecializationData> specializationData;
   @override
   Widget build(BuildContext context) {
     return SizedBox(
       height: 100.h,
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
-        itemCount: 8,
+        itemCount: specializationData.length,
         itemBuilder: (context, index) {
-          return Padding(
-            padding: EdgeInsetsDirectional.only(start: index == 0 ? 0 : 24.w),
-            child: Column(
-              children: [
-                CircleAvatar(
-                  radius: 28,
-                  backgroundColor: ColorManager.ligthBlue,
-                  child: SvgPicture.asset(
-                    AppImages.generalSpecialicy,
-                    height: 40.h,
-                    width: 40.w,
-                  ),
-                ),
-                verticalSpacing(height: 8),
-                Text('Ahemd', style: FontStyls.font12DarkblueRegular()),
-              ],
-            ),
+          return DoctorsSpecialityListViewItem(
+            index: index,
+            doctorsSpecialization: specializationData[index],
           );
         },
       ),

@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:doc_appointments_app/core/networking/api_service.dart';
 import 'package:doc_appointments_app/core/networking/dio_factory.dart';
+import 'package:doc_appointments_app/features/home/repos/home_repo_impl.dart';
 import 'package:doc_appointments_app/features/login/data/repos/login_repo.dart';
 import 'package:doc_appointments_app/features/login/data/repos/login_repo_impl.dart';
 import 'package:doc_appointments_app/features/login/logic/cubit/login_cubit.dart';
@@ -31,4 +32,8 @@ Future<void> setupGetIt() async {
   getIt.registerFactory<SignUpCubit>(
     () => SignUpCubit(signUpRepoImpl: getIt()),
   );
+
+  //home repoImpl and cubit
+  getIt.registerSingleton<HomeRepoImpl>(HomeRepoImpl(apiService: getIt()));
+  // we dont need to register the cubit we can access it simple
 }

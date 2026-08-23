@@ -1,4 +1,5 @@
 import 'package:doc_appointments_app/core/functions/setup_error_state.dart';
+import 'package:doc_appointments_app/core/functions/setup_loading_state.dart';
 import 'package:doc_appointments_app/core/helpers/extintions/navigation.dart';
 import 'package:doc_appointments_app/core/routing/routes.dart';
 import 'package:doc_appointments_app/core/theming/color_manager.dart';
@@ -18,14 +19,7 @@ class LoginBlocListner extends StatelessWidget {
       listener: (context, state) {
         state.mapOrNull(
           loading: (value) {
-            showDialog(
-              context: context,
-              builder: (context) => const Center(
-                child: CircularProgressIndicator(
-                  color: ColorManager.primaryColorBlue,
-                ),
-              ),
-            );
+            setupLoadingState(context);
           },
           success: (value) {
             context.pop();
