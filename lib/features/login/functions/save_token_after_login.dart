@@ -6,6 +6,6 @@ Future<void> saveTokenAfterLogin({
   required String key,
   required String token,
 }) async {
-  await SharedPrefHelper.setData(key, token);
+  await SharedPrefHelper.setSecuredString(key, token);
   DioFactory.setTokenIntoHeaderAfterLogin(token);
 }
