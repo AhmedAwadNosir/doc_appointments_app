@@ -20,7 +20,7 @@ Map<String, dynamic> _$DoctorsSpecializationResponseDataToJson(
 
 SpecializationData _$SpecializationDataFromJson(Map<String, dynamic> json) =>
     SpecializationData(
-      data: (json['data'] as num?)?.toInt(),
+      id: (json['id'] as num?)?.toInt(),
       name: json['name'] as String?,
       doctorsList: (json['doctors'] as List<dynamic>?)
           ?.map((e) => DoctorsModal.fromJson(e as Map<String, dynamic>))
@@ -29,7 +29,7 @@ SpecializationData _$SpecializationDataFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$SpecializationDataToJson(SpecializationData instance) =>
     <String, dynamic>{
-      'data': instance.data,
+      'id': instance.id,
       'name': instance.name,
       'doctors': instance.doctorsList,
     };

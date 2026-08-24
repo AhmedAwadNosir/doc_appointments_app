@@ -1,14 +1,16 @@
 import 'package:doc_appointments_app/core/helpers/spacing.dart';
 import 'package:doc_appointments_app/core/theming/color_manager.dart';
+import 'package:doc_appointments_app/features/home/data/models/doctors_specialization_reponse_modal.dart';
 import 'package:doc_appointments_app/features/home/logic/cubit/home_cubit.dart';
 import 'package:doc_appointments_app/features/home/logic/cubit/home_state.dart';
-import 'package:doc_appointments_app/features/home/ui/widgets/doctors_list/doctors_list_view.dart';
+import 'package:doc_appointments_app/features/home/ui/widgets/doctors_list/doctors_shimer_loading.dart';
+import 'package:doc_appointments_app/features/home/ui/widgets/specializations_list/specialcy_shimer_loading.dart';
 import 'package:doc_appointments_app/features/home/ui/widgets/specializations_list/speciality_list_view_item.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class HomeBlocBuilder extends StatelessWidget {
-  const HomeBlocBuilder({super.key});
+class SpecializationBlocBuilder extends StatelessWidget {
+  const SpecializationBlocBuilder({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -20,35 +22,14 @@ class HomeBlocBuilder extends StatelessWidget {
       builder: (context, state) {
         return state.maybeWhen(
           specializationLoading: () {
-            return Center(
-              child: CircularProgressIndicator(
-                color: ColorManager.primaryColorBlue,
-              ),
-            );
+            return setupLoading();
           },
           specializationSeccess: (specializationData) {
-            return Expanded(
-              child: Column(
-                children: [
-                  DoctorsSpecialityListView(
-                    specializationData:
-                        specializationData?.specializationDataList ?? [],
-                  ),
-                  verticalSpacing(height: 8),
-                  DoctorsListView(
-                    doctors:
-                        specializationData
-                            ?.specializationDataList?[0]
-                            .doctorsList ??
-                        [],
-                  ),
-                ],
-              ),
-            );
+            return setupSuccess(specializationData);
           },
 
           specializationError: (specializationError) {
-            return SizedBox.shrink();
+            return setupError();
           },
           orElse: () {
             return const SizedBox.shrink();
@@ -56,5 +37,26 @@ class HomeBlocBuilder extends StatelessWidget {
         );
       },
     );
+  }
+
+  /// shimmer loading for specializations and doctors
+  Widget setupLoading() {
+    return Expanded(
+      child: Column(
+        children: [
+          const SpecialityShimmerLoading(),
+          verticalSpacing(height: 8),
+          const DoctorsShimmerLoading(),
+        ],
+      ),
+    );
+  }
+
+  Widget setupSuccess(List<SpecializationData> specializationsList) {
+    return DoctorsSpecialityListView(specializationData: specializationsList);
+  }
+
+  Widget setupError() {
+    return const SizedBox.shrink();
   }
 }

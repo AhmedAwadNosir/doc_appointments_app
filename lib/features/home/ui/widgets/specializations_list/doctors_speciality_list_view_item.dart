@@ -10,31 +10,52 @@ import 'package:flutter_svg/svg.dart';
 class DoctorsSpecialityListViewItem extends StatelessWidget {
   const DoctorsSpecialityListViewItem({
     super.key,
-    required this.index,
+    required this.itemIndex,
     required this.doctorsSpecialization,
+    required this.selectedIndex,
   });
-  final int index;
+  final int itemIndex;
+  final int selectedIndex;
   final SpecializationData doctorsSpecialization;
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsetsDirectional.only(start: index == 0 ? 0 : 24.w),
+      padding: EdgeInsetsDirectional.only(start: itemIndex == 0 ? 0 : 24.w),
       child: Column(
         children: [
-          CircleAvatar(
-            radius: 28,
-            backgroundColor: ColorManager.ligthBlue,
-            child: Image.asset(
-              // doctorsSpecialization.doctorsList?[0]?.photo ?? '',
-              AppImages.generalSpecialicy,
-              height: 40.h,
-              width: 40.w,
-            ),
-          ),
+          itemIndex == selectedIndex
+              ? Container(
+                  decoration: BoxDecoration(
+                    border: Border.all(color: ColorManager.darkBlue),
+                    shape: BoxShape.circle,
+                  ),
+                  child: CircleAvatar(
+                    radius: 28,
+                    backgroundColor: ColorManager.ligthBlue,
+                    child: Image.asset(
+                      // doctorsSpecialization.doctorsList?[0]?.photo ?? '',
+                      AppImages.generalSpecialicy,
+                      height: 42.h,
+                      width: 42.w,
+                    ),
+                  ),
+                )
+              : CircleAvatar(
+                  radius: 28,
+                  backgroundColor: ColorManager.ligthBlue,
+                  child: Image.asset(
+                    // doctorsSpecialization.doctorsList?[0]?.photo ?? '',
+                    AppImages.generalSpecialicy,
+                    height: 40.h,
+                    width: 40.w,
+                  ),
+                ),
           verticalSpacing(height: 8),
           Text(
             doctorsSpecialization.name ?? "",
-            style: FontStyls.font12DarkblueRegular(),
+            style: itemIndex == selectedIndex
+                ? FontStyls.font14DarkBlueRegular()
+                : FontStyls.font12DarkblueRegular(),
           ),
         ],
       ),

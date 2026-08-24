@@ -80,13 +80,14 @@ class SharedPrefHelper {
   static getSecuredString(String key) async {
     debugPrint('SharedPrefHelper : getString with key : $key');
     const flutterSecureStorage = FlutterSecureStorage();
-    return flutterSecureStorage.read(key: key);
+    print('${flutterSecureStorage.read(key: key)}');
+    return await flutterSecureStorage.read(key: key);
   }
 
   /// Removes all keys and values in the flutterSecureStorage
-  static clearAllSecuredData() async {
+  static void clearAllSecuredData() async {
     debugPrint('SharedPrefHelper : all data has been cleared');
     const flutterSecureStorage = FlutterSecureStorage();
-    flutterSecureStorage.deleteAll();
+    await flutterSecureStorage.deleteAll();
   }
 }
