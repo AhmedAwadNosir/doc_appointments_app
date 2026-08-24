@@ -15,11 +15,11 @@ class DoctorsSpecializationResponseData {
 
 @JsonSerializable()
 class SpecializationData {
-  int? data;
+  int? id;
   String? name;
   @JsonKey(name: "doctors")
   List<DoctorsModal>? doctorsList;
-  SpecializationData({this.data, this.name, this.doctorsList});
+  SpecializationData({this.id, this.name, this.doctorsList});
   factory SpecializationData.fromJson(Map<String, dynamic> json) =>
       _$SpecializationDataFromJson(json);
 }

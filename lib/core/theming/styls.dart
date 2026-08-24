@@ -60,6 +60,14 @@ abstract class FontStyls {
     );
   }
 
+  static TextStyle font14DarkBlueRegular() {
+    return TextStyle(
+      fontSize: 14.sp,
+      fontWeight: FontWeightHelper.regular,
+      color: ColorManager.darkBlue,
+    );
+  }
+
   static TextStyle font14LieghtGreyMeduim() {
     return TextStyle(
       fontSize: 14.sp,

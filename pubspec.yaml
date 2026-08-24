@@ -72,6 +72,9 @@ dependencies:
   # A Flutter plugin for securely storing sensitive data using encrypted storage.
   flutter_secure_storage: any
 
+  # easy way to apply shimmer effect
+  shimmer: ^3.0.0
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
