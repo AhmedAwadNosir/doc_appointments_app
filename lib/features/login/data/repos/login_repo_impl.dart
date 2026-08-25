@@ -18,7 +18,7 @@ class LoginRepoImpl extends LoginRepo {
       var response = await _apiService.login(loginRequstBody);
       return ApiReslut.success(response);
     } catch (error) {
-      return ApiReslut.failure(ErrorHandler.handle(error));
+      return ApiReslut.failure(ApiErrorHandler.handle(error));
     }
   }
 }

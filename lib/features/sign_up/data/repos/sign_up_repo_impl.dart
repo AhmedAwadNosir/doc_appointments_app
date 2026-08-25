@@ -17,7 +17,7 @@ class SignUpRepoImpl extends SignUpRepo {
       var response = await _apiService.signUP(signUpRequestBodyModal);
       return ApiReslut.success(response);
     } catch (error) {
-      return ApiReslut.failure(ErrorHandler.handle(error));
+      return ApiReslut.failure(ApiErrorHandler.handle(error));
     }
   }
 }

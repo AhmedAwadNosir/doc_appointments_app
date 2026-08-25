@@ -10,7 +10,12 @@ ApiErrorModal _$ApiErrorModalFromJson(Map<String, dynamic> json) =>
     ApiErrorModal(
       code: (json['code'] as num?)?.toInt(),
       message: json['message'] as String?,
+      errors: json['data'] as Map<String, dynamic>?,
     );
 
 Map<String, dynamic> _$ApiErrorModalToJson(ApiErrorModal instance) =>
-    <String, dynamic>{'code': instance.code, 'message': instance.message};
+    <String, dynamic>{
+      'code': instance.code,
+      'message': instance.message,
+      'data': instance.errors,
+    };

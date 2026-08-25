@@ -1,4 +1,3 @@
-import 'package:dio/dio.dart';
 import 'package:doc_appointments_app/core/networking/api_error_handler.dart';
 import 'package:doc_appointments_app/core/networking/api_result.dart';
 import 'package:doc_appointments_app/core/networking/api_service.dart';
@@ -17,7 +16,7 @@ class HomeRepoImpl extends HomeRepo {
       final response = await _apiService.getSpecialization();
       return ApiReslut.success(response);
     } catch (e) {
-      return ApiReslut.failure(ErrorHandler.handle(e));
+      return ApiReslut.failure(ApiErrorHandler.handle(e));
     }
   }
 }

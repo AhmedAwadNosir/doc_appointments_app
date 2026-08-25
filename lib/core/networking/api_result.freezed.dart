@@ -122,11 +122,11 @@ return failure(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function( t data)?  success,TResult Function( ErrorHandler errorHandler)?  failure,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function( t data)?  success,TResult Function( ApiErrorModal apiErrorModal)?  failure,required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case Success() when success != null:
 return success(_that.data);case Failure() when failure != null:
-return failure(_that.errorHandler);case _:
+return failure(_that.apiErrorModal);case _:
   return orElse();
 
 }
@@ -144,11 +144,11 @@ return failure(_that.errorHandler);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function( t data)  success,required TResult Function( ErrorHandler errorHandler)  failure,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function( t data)  success,required TResult Function( ApiErrorModal apiErrorModal)  failure,}) {final _that = this;
 switch (_that) {
 case Success():
 return success(_that.data);case Failure():
-return failure(_that.errorHandler);case _:
+return failure(_that.apiErrorModal);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -165,11 +165,11 @@ return failure(_that.errorHandler);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function( t data)?  success,TResult? Function( ErrorHandler errorHandler)?  failure,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function( t data)?  success,TResult? Function( ApiErrorModal apiErrorModal)?  failure,}) {final _that = this;
 switch (_that) {
 case Success() when success != null:
 return success(_that.data);case Failure() when failure != null:
-return failure(_that.errorHandler);case _:
+return failure(_that.apiErrorModal);case _:
   return null;
 
 }
@@ -247,10 +247,10 @@ as t,
 
 
 class Failure<t> implements ApiReslut<t> {
-   Failure(this.errorHandler);
+   Failure(this.apiErrorModal);
   
 
- final  ErrorHandler errorHandler;
+ final  ApiErrorModal apiErrorModal;
 
 /// Create a copy of ApiReslut
 /// with the given fields replaced by the non-null parameter values.
@@ -262,16 +262,16 @@ $FailureCopyWith<t, Failure<t>> get copyWith => _$FailureCopyWithImpl<t, Failure
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is Failure<t>&&(identical(other.errorHandler, errorHandler) || other.errorHandler == errorHandler));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is Failure<t>&&(identical(other.apiErrorModal, apiErrorModal) || other.apiErrorModal == apiErrorModal));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,errorHandler);
+int get hashCode => Object.hash(runtimeType,apiErrorModal);
 
 @override
 String toString() {
-  return 'ApiReslut<$t>.failure(errorHandler: $errorHandler)';
+  return 'ApiReslut<$t>.failure(apiErrorModal: $apiErrorModal)';
 }
 
 
@@ -282,7 +282,7 @@ abstract mixin class $FailureCopyWith<t,$Res> implements $ApiReslutCopyWith<t, $
   factory $FailureCopyWith(Failure<t> value, $Res Function(Failure<t>) _then) = _$FailureCopyWithImpl;
 @useResult
 $Res call({
- ErrorHandler errorHandler
+ ApiErrorModal apiErrorModal
 });
 
 
@@ -299,10 +299,10 @@ class _$FailureCopyWithImpl<t,$Res>
 
 /// Create a copy of ApiReslut
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') $Res call({Object? errorHandler = null,}) {
+@pragma('vm:prefer-inline') $Res call({Object? apiErrorModal = null,}) {
   return _then(Failure<t>(
-null == errorHandler ? _self.errorHandler : errorHandler // ignore: cast_nullable_to_non_nullable
-as ErrorHandler,
+null == apiErrorModal ? _self.apiErrorModal : apiErrorModal // ignore: cast_nullable_to_non_nullable
+as ApiErrorModal,
   ));
 }
 
