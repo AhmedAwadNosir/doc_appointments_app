@@ -1,6 +1,91 @@
 import 'package:dio/dio.dart';
 import 'package:doc_appointments_app/core/networking/api_error_modal.dart';
 
+class ApiErrorHandler {
+  static ApiErrorModal handle(dynamic error) {
+    if (error is DioException) {
+      switch (error.type) {
+        case DioExceptionType.connectionTimeout:
+          return ApiErrorModal(
+            message:
+                "Connection timed out while reaching the server. Please check your internet connection.",
+          );
+
+        case DioExceptionType.sendTimeout:
+          return ApiErrorModal(
+            message:
+                "Unable to send data to the server in time. Please try again.",
+          );
+
+        case DioExceptionType.receiveTimeout:
+          return ApiErrorModal(
+            message:
+                "The server took too long to respond. Please try again later.",
+          );
+
+        case DioExceptionType.badCertificate:
+          return ApiErrorModal(
+            message:
+                "Security certificate validation failed. Connection is not secure.",
+          );
+
+        case DioExceptionType.badResponse:
+          return _handleBadResponseError(error.response?.data);
+
+        case DioExceptionType.cancel:
+          return ApiErrorModal(message: "The request was cancelled.");
+
+        case DioExceptionType.connectionError:
+          return ApiErrorModal(
+            message:
+                "No internet connection. Please verify your network and retry.",
+          );
+
+        case DioExceptionType.unknown:
+          return ApiErrorModal(
+            message: "An unexpected error occurred. Please try again.",
+          );
+        case DioExceptionType.transformTimeout:
+          return ApiErrorModal(
+            message:
+                "This feature or action is not supported yet. Please try again later.",
+          );
+      }
+    } else {
+      // Default / unhandled non-Dio error
+      return ApiErrorModal(
+        message: "An unexpected error occurred. Please try again later.",
+      );
+    }
+  }
+}
+
+ApiErrorModal _handleBadResponseError(dynamic data) {
+  return ApiErrorModal(
+    code: data['code'],
+    message: data['message'] ?? 'Unkown error ocured',
+    errors: data['data'],
+  );
+}
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+/*
+the old version of api error handler
+
+import 'package:dio/dio.dart';
+import 'package:doc_appointments_app/core/networking/api_error_modal.dart';
+
 import 'api_constants.dart';
 
 // TODO: wallahy I will refactor this .. Omar Ahmed
@@ -191,3 +276,6 @@ class ApiInternalStatus {
   static const int SUCCESS = 0;
   static const int FAILURE = 1;
 }
+
+
+ */

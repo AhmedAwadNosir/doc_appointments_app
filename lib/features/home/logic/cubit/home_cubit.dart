@@ -1,8 +1,6 @@
-import 'dart:developer';
-
 import 'package:bloc/bloc.dart';
 import 'package:doc_appointments_app/core/helpers/extintions/navigation.dart';
-import 'package:doc_appointments_app/core/networking/api_error_handler.dart';
+import 'package:doc_appointments_app/core/networking/api_error_modal.dart';
 import 'package:doc_appointments_app/core/networking/api_result.dart';
 import 'package:doc_appointments_app/features/home/data/models/doctors_specialization_reponse_modal.dart';
 import 'package:doc_appointments_app/features/home/logic/cubit/home_state.dart';
@@ -15,15 +13,15 @@ class HomeCubit extends Cubit<HomeState> {
   Future<void> getDoctorsSpecializations() async {
     emit(HomeState.specializationLoading());
     var response = await homeRepoImpl.getSpecializatoin();
-    response.mapOrNull(
+    response.when(
       success: (specializationData) {
         specializationDataList =
-            specializationData.data.specializationDataList ?? [];
+            specializationData.specializationDataList ?? [];
         getDoctorsList(specialityIndex: specializationDataList.first.id ?? 0);
         emit(HomeState.specializationSeccess(specializationDataList));
       },
-      failure: (error) {
-        emit(HomeState.specializationError(error.errorHandler));
+      failure: (apiErrorModal) {
+        emit(HomeState.specializationError(apiErrorModal));
       },
     );
   }
@@ -37,7 +35,7 @@ class HomeCubit extends Cubit<HomeState> {
     } else {
       emit(
         HomeState.doctorsError(
-          ErrorHandler.handle("No doctors in this speciality"),
+          ApiErrorModal(message: "No doctors in this speciality"),
         ),
       );
     }
